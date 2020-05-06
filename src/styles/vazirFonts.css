@@ -1,0 +1,63 @@
+@font-face {
+    font-family:'Vazir-Black';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/vazir-fonts/Vazir-Black.ttf') format("ttf"),
+		url('../fonts/vazir-fonts/Vazir-Black.woff2') format("woff2"),
+		url('../fonts/vazir-fonts/Vazir-Black.woff') format("woff"),
+		url('../fonts/vazir-fonts/Vazir-Black.eot') format("eot")
+	
+}
+@font-face {
+    font-family:'Vazir-Bold';
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/vazir-fonts/Vazir-Bold.ttf') format("ttf"),
+		url('../fonts/vazir-fonts/Vazir-Bold.woff2') format("woff2"),
+		url('../fonts/vazir-fonts/Vazir-Bold.woff') format("woff"),
+		url('../fonts/vazir-fonts/Vazir-Bold.eot') format("eot")
+	
+}
+@font-face {
+    font-family:'Vazir-Light';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/vazir-fonts/Vazir-Light.ttf') format("ttf"),
+		url('../fonts/vazir-fonts/Vazir-Light.woff2') format("woff2"),
+		url('../fonts/vazir-fonts/Vazir-Light.woff') format("woff"),
+		url('../fonts/vazir-fonts/Vazir-Light.eot') format("eot")
+}
+
+
+@font-face {
+    font-family:'Vazir-Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/vazir-fonts/Vazir-Medium.ttf') format("ttf"),
+		url('../fonts/vazir-fonts/Vazir-Medium.woff2') format("woff2"),
+		url('../fonts/vazir-fonts/Vazir-Medium.woff') format("woff"),
+		url('../fonts/vazir-fonts/Vazir-Medium.eot') format("eot")
+	
+}
+@font-face {
+    font-family:'Vazir-Thin';
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/vazir-fonts/Vazir-Thin.ttf') format("ttf"),
+		url('../fonts/vazir-fonts/Vazir-Thin.woff2') format("woff2"),
+		url('../fonts/vazir-fonts/Vazir-Thin.woff') format("woff"),
+		url('../fonts/vazir-fonts/Vazir-Thin.eot') format("eot")
+	
+}
+@font-face {
+    font-family:'Vazir';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/vazir-fonts/Vazir.ttf') format("ttf"),
+		url('../fonts/vazir-fonts/Vazir.woff2') format("woff2"),
+		url('../fonts/vazir-fonts/Vazir.woff') format("woff"),
+		url('../fonts/vazir-fonts/Vazir.eot') format("eot")
+}
+* {
+    font-family: 'Vazir';
+}

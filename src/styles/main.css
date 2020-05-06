@@ -1,0 +1,1060 @@
+@import "./vazirFonts.css";
+
+html {
+    margin: 0px;
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    background-color: #F7FFF7;
+    min-height: calc(100vh - 170px);
+    position: relative;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#root {
+    margin: 0px;
+    min-height: 100vh;
+}
+
+/* navbar */
+.myNav-logo {
+    width: 40px;
+}
+.myNav-cartLink {
+    text-decoration: none;
+}
+
+.myNav-cartLink:hover {
+    text-decoration: none;
+}
+
+.myNav-cartLink:hover .myNav-badge {
+    background-color: #32b3aa;
+}
+
+.myNav-badgeLabel {
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.myNav-badge {
+    position: relative;
+    bottom: 20px;
+    right: 10px;
+    padding: 0px 5px;
+    border-radius: 20px;
+    background-color: #4ecdc4;
+    color: #fff;
+    border: 1px solid #32b3aa; 
+}
+
+.myNav-account {
+    color: #505050;
+}
+
+.myNav-account:hover {
+    color: #101010;
+}
+
+.myNav-exit {
+    color: #ff6b6b;
+}
+
+.myNav-exit:hover {
+    color: #ff4d4d;
+}
+
+[class^="flaticon-smart-cart"]:before, [class*=" flaticon-smart-cart"]:before,
+[class^="flaticon-smart-cart"]:after, [class*=" flaticon-smart-cart"]:after {  
+    color: #505050;
+    font-size: 25px;
+}
+
+/* header */
+
+.myHeader {
+    margin-top: 60px;
+    height: 11vw;
+    background-color: #ff6b6b;
+}
+
+.myHeader-right {
+    margin-right: 5rem;
+    text-align: center;
+    vertical-align: center;
+    justify-content: center;
+}
+
+.myHeader-left {
+    margin-right: 30%;
+
+}
+
+[class^="flaticon-account"]:before, [class*=" flaticon-account"]:before,
+[class^="flaticon-account"]:after, [class*=" flaticon-account"]:after {   
+    font-size: 50px;
+}
+
+.myHeader-accountIcon {
+    color: #fff;
+}
+
+.myHeader-name {
+    font-size: 25px;
+    color: #fff;
+    vertical-align: middle;
+}
+
+[class^="flaticon-phone"]:before, [class*=" flaticon-phone"]:before,
+[class^="flaticon-phone"]:after, [class*=" flaticon-phone"]:after {   
+    font-size: 25px;  
+}
+
+[class^="flaticon-mail"]:before, [class*=" flaticon-mail"]:before,
+[class^="flaticon-mail"]:after, [class*=" flaticon-mail"]:after {   
+    font-size: 25px;
+}
+
+[class^="flaticon-card"]:before, [class*=" flaticon-card"]:before,
+[class^="flaticon-card"]:after, [class*=" flaticon-card"]:after {   
+    font-size: 25px;
+}
+
+.myHeader-leftIcon {
+    color: #fff;
+}
+
+.myHeader-info {
+    font-size: 14px;
+    color: #fff;
+    vertical-align: middle;
+}
+
+/* sign up */
+@media screen and (max-width: 1300px) {
+    .myHeader {
+        height: 13vw;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .myHeader {
+        height: 17vw;
+    }
+    .mySignupLogo {
+        padding-top: 10vw;
+    }
+    .mySignupTab {
+        top: 4vw;
+    }
+    ::placeholder {
+        font-size: 1.5vw;
+    }
+}
+
+.signUpRow:first-of-type {
+    margin-top: 20px;
+}
+
+.signUpRow:last-of-type {
+    margin-bottom: 20px;
+}
+
+.signUpRow {
+    padding: 20px;
+}
+
+.signUpCol {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.separatorLine {
+    height: 1.5px;
+    background-color: #4ECDC4;
+}
+
+.mySignUpInput {
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    font-size: 110%;
+}
+
+.mySignUpInput::placeholder {
+    color: rgb(211, 106, 106);
+}
+
+.mySignupBody {
+    min-height: 100vh;
+    background: url(../images/CoverPhoto.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.mySignupTab {
+    position: relative; 
+    text-align: center;
+}
+
+.myGreetingMsg {
+    position: relative;
+    color: white;
+    font-size: 150%;
+    font-weight: bold;
+    margin-top: 1vw;
+    text-align: center;
+}
+
+.mySignupLogo {
+    display: block; 
+    position: relative; 
+    width: 10%; 
+    top: 0.5vw; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.mySignupCard {
+    opacity: 0.95;
+}
+.mySignupCard:hover {
+    opacity: 1;
+}
+
+.myHiddenDiv {
+    visibility: hidden;
+    display: none;
+}
+
+/* footer */
+.footer {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 50px;
+    background-color: #1A535C;
+    color: white;
+    text-align: center;
+    margin-top: 60px;
+}
+
+/* profile */
+.myTabs {
+    position: relative;
+    margin-top: 70px; 
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.myRightTabButton {
+    width: 23%;
+    height: 50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.0005), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 0px 5px 5px 0;
+    border-left: 1px dashed grey;
+    cursor: pointer;
+}
+
+.myLeftTabButton {
+    color: white;
+    width: 23%;
+    height: 50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.0005), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 5px 0px 0px 5px;
+    cursor: pointer;
+}
+
+.myActiveTab {
+    color: white;
+    background-color: #ff6b6b;
+    z-index: 3;
+}
+
+.myActiveTab:hover {
+    color: white;
+}
+
+.myNotActiveTab {
+    color: black;
+    background-color: white;
+    z-index: 3;
+}
+
+.myNotActiveTab:hover {
+    background-color: #e6ffe6;
+    color: #ff4d4d;
+}
+
+.myMiddleCard {
+    border-radius: 30px;
+    width: 70%; 
+    margin: 0 auto;
+    z-index: 2;
+    margin-top: -25px;
+}
+
+.myCardBorder {
+    border-color: #bfbfbf;
+}
+
+.myCreditBtn {
+    color: white;
+    background-color: #4ECDC4;
+    border-radius: 5px;
+    font-size: 110%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.myCreditBtn:hover {
+    background-color: #32b3aa;
+}
+
+.myCreditInp {
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    font-size: 110%;
+}
+
+.warningInput::placeholder {
+    color: rgb(211, 106, 106);
+}
+
+.myCreditRow {
+    margin-top: 50px;
+    margin-bottom: 35px;
+}
+
+.myOrderRow {
+    margin-top: 25px;
+    border: 1px solid #bfbfbf;
+    border-radius: 6px;
+}
+
+.myMiddleCol {
+    border-left: 1px solid #bfbfbf;
+    border-right: 1px solid #bfbfbf;
+}
+
+.myOrderCol {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.myDelivering {
+    margin-top: 5px;
+    color: #104410;
+    background-color: #adebad;
+    font-size: 80%;
+    margin-top: 8px;
+    width: 60%;
+    height: 65%;
+}
+
+.mySearching {
+    color: #024b5d;
+    background-color: #ccf5ff;
+    font-size: 80%;
+    margin-top: 8px;
+    width: 70%;
+    height: 65%;
+}
+
+.mySeeBill {
+    color: black;
+    background-color: #FFE66D;
+    font-size: 80%;
+    margin-top: 8px;
+    width: 60%;
+    height: 65%;
+}
+
+.myLastRow {
+    margin-bottom: 20px;
+}
+
+/* Restaurant */
+[class^="flaticon-minus"]:before, [class*=" flaticon-minus"]:before,
+[class^="flaticon-minus"]:after, [class*=" flaticon-minus"]:after {  
+    color: red;
+    font-size: 15px;
+}
+
+
+[class^="flaticon-plus"]:before, [class*=" flaticon-plus"]:before,
+[class^="flaticon-plus"]:after, [class*=" flaticon-plus"]:after {  
+    color: #505050;
+    font-size: 15px;
+}
+
+.myRestaurantLogo {
+    position: relative;
+    width:12vw; 
+    margin-top: -6vw; 
+    border: 12px solid white;
+    border-radius: 20px;
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+    box-shadow: 0px 0px 5px rgb(85, 85, 85);
+}
+
+.myRestaurantName {
+    text-align: center; 
+    font-size: 2vw; 
+    color: black; 
+    font-weight: bold; 
+    margin-top: 1vw;
+}
+
+.myRestaurantContainer {
+    margin: auto;
+    width: 95%;
+    margin-top: 10vw;
+}
+
+.myRestaurantCard {
+    margin-top: 6vw;
+    border-radius: 7px; 
+    box-shadow: 0px 0px 4px rgb(162, 189, 162);
+}
+
+.centerText {
+    text-align: center;
+}
+
+.myCartHr {
+    width: 7rem; 
+    border-top: 3px solid #c2bebe; 
+    margin-top: -5px;
+}
+
+.myCartBorder {
+    border-radius: 20px; 
+    border: 2px dashed #c2bebe;
+    padding: 10px;
+}
+
+.plusButton {
+    text-decoration: none;
+    margin-right: 20%; 
+    margin-left: -15px;
+}
+
+.minusButton {
+    text-decoration: none;
+    margin-right: -10px;
+}
+
+.plusButton:link, .minusButton:link {
+    text-decoration: none;
+}
+
+.myFoodPrice {
+    margin-top: -15px; 
+    font-size: 70%;
+}
+
+.myCartFoodHr {
+    width: 80%; 
+    border-top: 2px solid #d8d0d0;
+    margin-top: -10px;
+}
+
+.myNotFirstFood {
+    margin-top: -10px;
+}
+
+.myTotalPrice {
+    text-align: center; 
+    margin-top: 10px;
+}
+
+.myConfirmBtn {
+    color: white;
+    background-color: #4ECDC4;
+    border-radius: 8px;
+    width: 60%;
+    cursor: pointer;
+    margin:auto;
+    display:block;
+}
+
+.divisorDiv {
+    width: 5%;
+}
+
+.myCartMenuDivisor {
+    padding-top: 6vw;
+    height: 100%;  
+    margin-right: 25%;
+}
+
+.myCartMenuDivisorBorder {
+    border-right: 2px dashed rgb(172, 195, 172);
+}
+
+.menu {
+    width: 59%;
+}
+
+.menuTitle {
+    height: 6vw;
+}
+
+.menuTitleLabel {
+    color: #1A535C;
+    font-size: 2.5vw;
+}
+
+.myMenuTitleHr {
+    width: 14vw; 
+    border-top: 2px solid #1A535C; 
+    margin-top: -5px;
+}
+
+.menuFoodCard {
+    box-shadow: 0px 0px 4px rgb(162, 189, 162);
+    border-radius: 7px;
+}
+
+.menuFoodImage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10vw;
+    height: 8vw;
+    border-radius: 10px;
+}
+
+.menuStarLabel {
+    padding-top: 3px;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.foodNameLabel {
+    font-size: 15px;
+}
+
+.menuFoodPrice {
+    text-align: center;
+    font-size: 13px;
+}
+
+.addToCartButton {
+    font-size: 1vw;
+    background-color: #FFE66D;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    width: 90%;
+}
+
+.outOfOrderButton {
+    font-size: 1vw;
+    background-color: #d8d0d0;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+[class^="flaticon-star"]:before, [class*=" flaticon-star"]:before,
+[class^="flaticon-star"]:after, [class*=" flaticon-star"]:after {  
+    color: #ffa526;
+    font-size: 11px;
+}
+
+@media screen and (max-width: 1300px) {
+    .myRestaurantLogo {
+        width:14vw; 
+        margin-top: -7vw; 
+        border: 8px solid white;
+    }
+    .myRestaurantName {
+        font-size: 2vw;
+    }
+    .myRestaurantContainer {
+        margin-top: 13vw;
+    }
+    .menuStarLabel {
+        font-size: 10px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .myRestaurantLogo {
+        width:22vw; 
+        margin-top: -11vw; 
+        border: 6px solid white;
+    }
+    .myRestaurantName {
+        font-size: 3vw;
+        margin-top: 2vw;
+    }
+    .myRestaurantContainer {
+        margin-top: 15vw;
+    }
+    .foodNameLabel {
+        padding-top: 2px;
+        font-size: 9px;
+    }
+    .menuFoodPrice {
+        font-size: 11px;
+    }
+    .addToCartButton, .outOfOrderButton {
+        font-size: 9px;
+        font-weight: bold;
+    }
+    .menuStarLabel {
+        font-size: 9px;
+    }
+}
+
+/* modal */
+.Modal {
+    margin: 0 auto;
+}
+.normalModal {
+    padding: 15px;
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+/* ProfileModal */
+.profileModalTitle {
+    padding: 10px;
+    font-size: 24px;
+}
+.profileModalHr {
+    width: 60%;
+    border-top: 2px solid #dfdfdf; 
+    margin-top: -5px;
+}
+.orderTable {
+    border: 1px solid #dddddd;
+    width: 100%;
+}
+.pTHeadModal {
+    background-color: #eeeeee;
+    color: #999999;
+    font-size: 14px;
+}
+.orderTable th,  .orderTable td{
+    text-align: center; 
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+.profileModalFooter {
+    margin-top: 10px;
+}
+.modalTotalPrice {
+    font-size: 14px;
+}
+
+/* food modal */
+.foodModalTitle {
+    font-size: 24px;
+}
+.modalFoodImage {
+    width: 90%;
+    border-radius: 7px;
+    text-shadow: 2px 2px;
+}
+.modalFoodName {
+    text-align: start;
+}
+.modalFoodNameLabel {
+    font-size: 21px;
+}
+[class^="flaticon-star modalStar"]:before, [class*=" flaticon-star modalStar"]:before,
+[class^="flaticon-star modalStar"]:after, [class*=" flaticon-star modalStar"]:after {  
+    margin-right: 10px;
+    margin-top: 2px;
+    padding-top: 4px;
+    color: #ffa526;
+    font-size: 16px;
+    margin-left: 8px;
+}
+.modalFoodScore {
+    margin-right: -5px;
+    font-size: 18px;
+}
+.modalFoodDescriptionLabel {
+    color: #aaaaaa;
+    font-size: 16px;
+    margin-top: 2px;
+}
+.modalFoodPriceLabel {
+    font-size: 22px;
+}
+.modalFoodNewPrice{
+    margin-right: 15px;
+}
+.height-30 {
+    height: 30%;
+    padding-top: 7px;
+    padding-bottom: 0px;
+}
+.modalFoodHr {
+    width: 100%; 
+    border-top: 2px dashed #ccc;
+}
+.incDecDiv {
+    text-align: center;
+    padding-top: 7px;
+}
+.modalConfirmBtn {
+    color: white;
+    background-color: #4ECDC4;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 15px;
+    cursor: pointer;
+    margin:auto;
+    display:block;
+}
+.modalRemainingFood {
+    font-size: 15px; 
+    border-style: solid; 
+    border-radius: 7px; 
+    border-width: 1px; 
+    text-align: center; 
+    height: 30px; 
+    color: rgb(148, 156, 156); 
+    background-color: #F7FFF7;
+    margin-top: 5px;
+    padding: 5px 15px 0px 15px;
+}
+
+/* home */
+.padding-r-10 {
+    padding-right: 10px;
+}
+.padding-r-0 {
+    padding-right: 0px;
+}
+.margin-t-15 {
+    margin-top: 15px;
+}
+.margin-t-n15 {
+    margin-top: -15px;
+}
+.myHomeHeader {
+    margin-top: 60px;
+    height: 13vw;
+    background-color: #ff6b6b;
+    opacity: 0.9;
+}
+
+.myHomeHeader::after {
+    height: 13vw;
+    content: "";
+    background-image: url(../images/CoverPhoto.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+
+.myHomeLogo {
+    display: block; 
+    position: relative; 
+    width: 7vw; 
+    top: 1vw; 
+    margin-left: auto; 
+    margin-right: auto;
+    filter: drop-shadow(0px 0px 3px #222);
+    opacity: 1;
+}
+
+.myHomeGreetingMsg {
+    position: relative;
+    color: white;
+    font-size: 150%;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.mySearchCard {
+    width: 50vw; 
+    height: 4vw; 
+    border-radius: 5px; 
+    box-shadow: 0px 0px 5px rgb(85, 85, 85); 
+    margin-top: -2vw;
+}
+
+.mySearchRow {
+    margin-top: 1vw
+
+}
+
+.mySearchInp {
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    height: 2vw; 
+    text-align: center; 
+    width: 100%;
+    font-size: 1.1vw;
+}
+.mySearchButton {
+    background-color: #FFE66D;
+    height: 2vw; 
+    font-size: 110%; 
+    color: #1A535C; 
+    text-align: center; 
+    width: 105%;
+    font-weight: bold;
+}
+.mySearchButton:hover {
+    background-color: rgb(250, 217, 51);
+}
+.myPartySeparator {
+    display: block;
+    margin: 0 auto;
+    background-color: #1A535C; 
+    height: 3px;
+    width: 130px;
+    margin-top: -15px;
+}
+.myHomeTitle {
+    text-align: center; 
+    margin-top: 30px; 
+    font-size: 170%; 
+    color: #1A535C;
+}
+.myRemainingTime {
+    margin: 0 auto;
+    text-align: center;
+    color: rgb(95, 145, 153); 
+    font-size: 0.8vw;
+    border-color: rgb(95, 145, 153);
+    border-radius: 4px;
+    border-width: 0.8px;
+    border-style: solid;
+    margin-top: 8px;
+    width: 8vw;
+    height: 2vw;
+}
+.timeLabelStyle {
+    margin-top: 0.5vw;
+}
+.myPartyNavCard {
+    width: 100%; 
+    height: 300px; 
+    margin-top: 20px; 
+    background-color: #F7FFF7; 
+    box-shadow: 0px 0px 4px rgb(168, 166, 166);
+}
+.partyCardWidth {
+    width: 20%
+}
+.myPartyCard {
+    width: 100%; 
+    height: 270px; 
+    margin-top: 15px;
+    box-shadow: 0px 0px 3px rgb(146, 142, 142);
+}
+.myRedLineThrough {
+    text-decoration: line-through; 
+    text-decoration-color: red;
+}
+.myRemainingFood {
+    font-size: 0.9vw; 
+    border-style: solid; 
+    border-radius: 5px; 
+    border-width: 1px; 
+    text-align: center; 
+    height: 2vw; 
+    color: rgb(148, 156, 156); 
+    background-color: #F7FFF7;
+    padding-top: 0.2vw;
+}
+.myPartyBuyBtn {
+    color: white; 
+    background-color: #4ECDC4; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 0.9vw; 
+    width: 100%; 
+    height: 2vw; 
+    padding-top: 0px; 
+    margin-bottom: 16px;
+}
+.myPartyBuyBtn:hover {
+    background-color: #32b3aa;
+}
+.myDashedGreenLine {
+    border-top: 1px dashed #1A535C; 
+    margin-top: -10px;
+}
+.myHomeResLogo {
+    display: block; 
+    margin: 0 auto; 
+    margin-top: 10px;
+    width: 50%;
+    height: 9vw;
+    width: 9vw;
+}
+.myPartyRestaurant {
+    margin-top: -15px; 
+    font-size: 1.2vw;
+
+}
+.myNormalRestaurantName {
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 1.1vw; 
+    margin-top: 8px;
+}
+.myShowMenuBtn {
+    margin-top: -10px;
+    font-size: 1.1vw;
+    background-color: #FFE66D;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    width: 50%;
+    height: 2.8vw;
+}
+.myShowMenuBtn:hover {
+    background-color: rgb(250, 217, 51);
+}
+.myPartyCardInfoRow {
+    min-height: 8vw;
+}
+
+@media screen and (max-width: 1300px) {
+    .myHomeHeader {
+        height: 20vw;
+    }
+    .myHomeHeader::after {
+        height: 20vw;
+    }
+    .myHomeLogo {
+        top: 2vw; 
+        width: 9vw; 
+    }
+    .myHomeGreetingMsg {
+        font-size: 100%;
+        margin-top: 35px;
+    }
+    .mySearchCard {
+        height: 6vw;
+        margin-top: -3vw; 
+    }
+    .mySearchInp {
+        height: 4vw;
+        font-size: 1.6vw;
+        width: 110%;
+    }
+    .mySearchButton {
+        height: 4vw; 
+        font-size: 1.5vw;
+    }
+    .myRemainingTime {
+        width: 12vw;
+        height: 2vw;
+        font-size: 1.1vw;
+    }
+    .myPartyNavCard {
+        height: 270px;
+    }
+    .partyCardWidth {
+        width: 22%
+    }
+    .myPartyCard {
+        height: 240px;
+    }
+    .myPartyCardInfoRow {
+        min-height: 9vw;
+    }
+    .myHomeResLogo {
+        height: 10vw;
+        width: 10vw;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .myHomeHeader {
+        height: 25vw;
+    }
+    .myHomeHeader::after {
+        height: 25vw;
+    }
+    .myHomeLogo {
+        top: 3vw;
+        width: 10vw; 
+    }
+    .myHomeGreetingMsg {
+        font-size: 100%;
+        margin-top: 40px;
+    }
+    .mySearchCard {
+        height: 7vw; 
+        margin-top: -3.5vw;
+    }
+    .mySearchInp {
+        height: 5vw; 
+        font-size: 1.8vw;
+        width: 110%;
+    }
+    .mySearchButton {
+        height: 5vw; 
+        font-size: 1.6vw;
+    }
+    .myRemainingTime {
+        width: 13vw;
+        height: 2.5vw;
+        font-size: 1.2vw;
+    }
+    .myPartyNavCard {
+        height: 26vw;
+    }
+    .partyCardWidth {
+        width: 24%
+    }
+    .myPartyCard {
+        height: 22vw;
+    }
+    .myPartyRestaurant {
+        font-size: 1.6vw;
+    }
+    .myPartyCardInfoRow {
+        min-height: 10vw;
+    }
+    .myHomeResLogo {
+        
+        height: 12vw;
+        width: 12vw;
+    }
+}
+.myDescriptionDiv {
+    margin-left: 1vw;
+}
+.spinnerDiv {	
+    position:fixed;	
+    top:50%;	
+    left:50%;	
+}
+
+.showMoreButtonDiv {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.showMoreButton {
+    margin-top: -10px;
+    background-color: #4ECDC4;
+    border-radius: 10px;
+    border: 2px solid #4ECDC4;
+    color: #fff;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    padding: 5px 40px;
+}
+.showMoreButton:hover {
+    background-color: #32b3aa;
+}
