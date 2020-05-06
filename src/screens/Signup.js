@@ -6,91 +6,79 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/font/flaticon.css'
 import '../styles/main.css'
 import Footer from '../components/Footer';
+import axios from 'axios'
 
 class Signup extends Component {
     constructor(props) {
         super(props);
 
-        this.setName = this.setName.bind(this);
-        this.setPhone = this.setPhone.bind(this);
+        this.setFirstName = this.setFirstName.bind(this);
+        this.setLastName = this.setLastName.bind(this);
         this.setEmail = this.setEmail.bind(this);
-        this.setUserName = this.setUserName.bind(this);
         this.setPassword = this.setPassword.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.showSignup = this.showSignup.bind(this);
         this.showLogin  = this.showLogin.bind(this);
-        this.setUserNameLogin  = this.setUserNameLogin.bind(this);
+        this.setEmailLogin  = this.setEmailLogin.bind(this);
         this.setPasswordLogin  = this.setPasswordLogin.bind(this);
 
-        this.nameRef = React.createRef();
-        this.phoneRef = React.createRef();
+        this.firstNameRef = React.createRef();
+        this.lastNameRef = React.createRef();
         this.emailRef = React.createRef();
-        this.usernameRef = React.createRef();
         this.passwordRef = React.createRef();
         this.signupRef = React.createRef();
         this.loginRef = React.createRef();
-        this.usernameRefLogin = React.createRef();
-        this.passwordRefLogin = React.createRef();
+        this.emailLoginRef = React.createRef();
+        this.passwordLoginRef = React.createRef();
 
         this.state = {
-            name: '',
-            phone: '',
+            firstName: '',
+            lastName: '',
             email: '',
-            username: '',
             password: '',
-            usernameLogin: '',
+            emailLogin: '',
             passwordLogin: '',
             inSignup: true
         }
     }
-    setName(event) {
-        this.setState({name: event.target.value});
-        this.nameRef.current.style.borderColor = 'gray';
+    setFirstName(event) {
+        this.setState({firstName: event.target.value});
+        this.firstNameRef.current.style.borderColor = 'gray';
     }
-    setPhone(event) {
-        this.setState({phone: event.target.value});
-        this.phoneRef.current.style.borderColor = 'gray';
+    setLastName(event) {
+        this.setState({lastName: event.target.value});
+        this.lastNameRef.current.style.borderColor = 'gray';
     }
     setEmail(event) {
         this.setState({email: event.target.value});
         this.emailRef.current.style.borderColor = 'gray';
     }
-    setUserName(event) {
-        this.setState({username: event.target.value});
-        this.usernameRef.current.style.borderColor = 'gray';
-    }
     setPassword(event) {
         this.setState({password: event.target.value});
         this.passwordRef.current.style.borderColor = 'gray';
     }
-    isPhoneValid(num) {
-        if (num.length === 11 && isFarsiNumber(num) && num[0] === '۰' && num[1] === '۹')
-            return true;
-        if (num.length === 11 && num.match(/^\d+$/) && num[0] === '0' && num[1] === '9')
-            return true;
-        return false;
-    }
+
     handleSignup(event) {
-        // Name
-        if (this.state.name == null || this.state.name === "") {
-            this.nameRef.current.style.borderColor = 'red';
-            this.nameRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+        // First Name
+        if (this.state.firstName == null || this.state.firstName === "") {
+            this.firstNameRef.current.style.borderColor = 'red';
+            this.firstNameRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
         }
-        else if (!isStringFarsi(this.state.name)) {
-            this.setState({name : ''});
-            this.nameRef.current.style.borderColor = 'red';
-            this.nameRef.current.placeholder = 'از حروف فارسی استفاده کنید!';
+        else if (!isStringFarsi(this.state.firstName)) {
+            this.setState({firstName : ''});
+            this.firstNameRef.current.style.borderColor = 'red';
+            this.firstNameRef.current.placeholder = 'از حروف فارسی استفاده کنید!';
         }
-        // Phone
-        if (this.state.phone == null || this.state.phone === "") {
-            this.phoneRef.current.style.borderColor = 'red';
-            this.phoneRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+        // Last Name
+        if (this.state.lastName == null || this.state.lastName === "") {
+            this.lastNameRef.current.style.borderColor = 'red';
+            this.lastNameRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
         }
-        else if (!this.isPhoneValid(this.state.phone)) {
-            this.setState({phone : ''});
-            this.phoneRef.current.style.borderColor = 'red';
-            this.phoneRef.current.placeholder = 'شماره ی وارد شده معتبر نیست!';
+        else if (!isStringFarsi(this.state.lastName)) {
+            this.setState({lastName : ''});
+            this.lastNameRef.current.style.borderColor = 'red';
+            this.lastNameRef.current.placeholder = 'از حروف فارسی استفاده کنید!';
         }
         // Email
         if (this.state.email == null || this.state.email === "") {
@@ -102,36 +90,57 @@ class Signup extends Component {
             this.emailRef.current.style.borderColor = 'red';
             this.emailRef.current.placeholder = 'ایمیل وارد شده معتبر نیست!';
         }
-        // Username
-        if (this.state.username == null || this.state.username === "") {
-            this.usernameRef.current.style.borderColor = 'red';
-            this.usernameRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
-        }
         // Password
         if (this.state.password == null || this.state.password === "") {
             this.passwordRef.current.style.borderColor = 'red';
             this.passwordRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
         }
+
+        // Signup
+        if (this.state.firstName != '' && this.state.lastName != '' && this.state.email != '' && this.state.password != '') {
+            axios({
+                method: 'put',
+                url: 'http://localhost:8080/profile',
+                data: {
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: this.state.email,
+                    password: this.state.password,
+                    issuer: "localhost:8080"
+                }
+                })
+                .then((response) => {
+                    localStorage.setItem('token', response.data);
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        }
     }
 
-    setUserNameLogin(event) {
-        this.setState({usernameLogin: event.target.value});
-        this.usernameRefLogin.current.style.borderColor = 'gray';
+    setEmailLogin(event) {
+        this.setState({emailLogin: event.target.value});
+        this.emailLoginRef.current.style.borderColor = 'gray';
     }
     setPasswordLogin(event) {
         this.setState({passwordLogin: event.target.value});
-        this.passwordRefLogin.current.style.borderColor = 'gray';
+        this.passwordLoginRef.current.style.borderColor = 'gray';
     }
     handleLogin(event) {
-        // Username
-        if (this.state.usernameLogin == null || this.state.usernameLogin === "") {
-            this.usernameRefLogin.current.style.borderColor = 'red';
-            this.usernameRefLogin.current.placeholder = 'پر کردن این قسمت الزامی است!';
+        // Email
+        if (this.state.emailLogin == null || this.state.emailLogin === "") {
+            this.emailLoginRef.current.style.borderColor = 'red';
+            this.emailLoginRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+        }
+        else if (!this.state.emailLogin.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+            this.setState({emailLogin : ''});
+            this.emailLoginRef.current.style.borderColor = 'red';
+            this.emailLoginRef.current.placeholder = 'ایمیل وارد شده معتبر نیست!';
         }
         // Password
         if (this.state.passwordLogin == null || this.state.passwordLogin === "") {
-            this.passwordRefLogin.current.style.borderColor = 'red';
-            this.passwordRefLogin.current.placeholder = 'پر کردن این قسمت الزامی است!';
+            this.passwordLoginRef.current.style.borderColor = 'red';
+            this.passwordLoginRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
         }
     }
     showSignup(event) {
@@ -180,9 +189,9 @@ class Signup extends Component {
                             <div className="card-body">
                                 <div className="container">
                                     <div className="row justify-content-center signUpRow">
-                                        <div className="col-4 signUpCol ">نام و نام خانوادگی</div>
+                                        <div className="col-4 signUpCol ">نام</div>
                                         <div className="col-6">
-                                            <input type="text" className="form-control mySignUpInput" id="name" value={this.state.name} onChange={this.setName} ref={this.nameRef}/>
+                                            <input type="text" className="form-control mySignUpInput" value={this.state.firstName} onChange={this.setFirstName} ref={this.firstNameRef}/>
                                         </div>
                                     </div>
                                     <div className="row justify-content-center">
@@ -190,9 +199,9 @@ class Signup extends Component {
                                     </div>
 
                                     <div className="row justify-content-center signUpRow">
-                                        <div className="col-4 signUpCol ">تلفن همراه</div>
+                                        <div className="col-4 signUpCol ">نام خانوادگی</div>
                                         <div className="col-6">
-                                            <input type="tel" className="form-control mySignUpInput" id="phone" value={this.state.phone} onChange={this.setPhone} ref={this.phoneRef}/>
+                                            <input type="text" className="form-control mySignUpInput" value={this.state.lastName} onChange={this.setLastName} ref={this.lastNameRef}/>
                                         </div>
                                     </div>
                                     <div className="row justify-content-center">
@@ -202,17 +211,7 @@ class Signup extends Component {
                                     <div className="row justify-content-center signUpRow">
                                         <div className="col-4 signUpCol ">ایمیل</div>
                                         <div className="col-6">
-                                            <input type="email" className="form-control mySignUpInput" id="email" value={this.state.email} onChange={this.setEmail} ref={this.emailRef}/>
-                                        </div>
-                                    </div>
-                                    <div className="row justify-content-center">
-                                        <div className = "col-9 separatorLine"></div>
-                                    </div>
-
-                                    <div className="row justify-content-center signUpRow">
-                                        <div className="col-4 signUpCol ">نام کاربری</div>
-                                        <div className="col-6">
-                                            <input type="text" className="form-control mySignUpInput" id="username" value={this.state.username} onChange={this.setUserName} ref={this.usernameRef}/>
+                                            <input type="email" className="form-control mySignUpInput" value={this.state.email} onChange={this.setEmail} ref={this.emailRef}/>
                                         </div>
                                     </div>
                                     <div className="row justify-content-center">
@@ -222,7 +221,7 @@ class Signup extends Component {
                                     <div className="row justify-content-center signUpRow">
                                         <div className="col-4 signUpCol ">رمز عبور</div>
                                         <div className="col-6">
-                                            <input type="password" className="form-control mySignUpInput" id="password" value={this.state.password} onChange={this.setPassword} ref={this.passwordRef}/>
+                                            <input type="password" className="form-control mySignUpInput" value={this.state.password} onChange={this.setPassword} ref={this.passwordRef}/>
                                         </div>
                                     </div>
 
@@ -239,9 +238,9 @@ class Signup extends Component {
                             <div className="card-body">
                                 <div className="container">
                                     <div className="row justify-content-center signUpRow">
-                                        <div className="col-4 signUpCol">نام کاربری</div>
+                                        <div className="col-4 signUpCol">ایمیل</div>
                                         <div className="col-6">
-                                            <input type="text" className="form-control mySignUpInput" value={this.state.usernameLogin} onChange={this.setUserNameLogin} ref={this.usernameRefLogin}/>
+                                            <input type="text" className="form-control mySignUpInput" value={this.state.emailLogin} onChange={this.setEmailLogin} ref={this.emailLoginRef}/>
                                         </div>
                                     </div>
                                     <div className="row justify-content-center">
@@ -251,7 +250,7 @@ class Signup extends Component {
                                     <div className="row justify-content-center signUpRow">
                                         <div className="col-4 signUpCol ">رمز عبور</div>
                                         <div className="col-6">
-                                            <input type="password" className="form-control mySignUpInput" value={this.state.passwordLogin} onChange={this.setPasswordLogin} ref={this.passwordRefLogin}/>
+                                            <input type="password" className="form-control mySignUpInput" value={this.state.passwordLogin} onChange={this.setPasswordLogin} ref={this.passwordLoginRef}/>
                                         </div>
                                     </div>
 

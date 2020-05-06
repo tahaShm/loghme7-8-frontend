@@ -246,7 +246,7 @@ class Profile extends Component {
                 <ToastContainer enableMultiContainer containerId={'notEnoughCredit'} type = {toast.TYPE.ERROR} position={toast.POSITION.TOP_CENTER} />
                 <Navbar reservedFoods = {this.state.foodCountInOrder} showCart = {this.showCart}/>
                 <CartModal currentOrder = {this.state.orderInCart} show = {this.state.showCartModal} hideModal = {this.hideCart} finalize = {this.finalizeOrder} increaseButton = {this.increaseFood} decreaseButton = {this.decreaseFood}/>    
-                <Header name = {localStorage.getItem('name')} phoneNumber = {localStorage.getItem('phoneNumber')} email = {localStorage.getItem('email')} credit={this.state.userCredit} />
+                <Header name = {localStorage.getItem('firstName') + ' ' + localStorage.getItem('lastName')} phoneNumber = {"091287955201"} email = {localStorage.getItem('email')} credit={this.state.userCredit} />
                 <div className="myTabs">
                     <div className="d-flex justify-content-center mb-n2">
                         <button type="button" className={rightButton} onClick = {this.showOrders}>سفارش ها</button>
