@@ -46,7 +46,7 @@ class GoogleBtn extends Component {
 
   render() {
     return (
-    <div className="googleBtn">
+    <div>
         <GoogleLogin
           clientId={CLIENT_ID}
           buttonText='Login with Google'

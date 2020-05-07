@@ -11,7 +11,6 @@ import Footer from '../components/Footer';
 import toPersianNum from '../utils/PersianNumber';
 import axios from 'axios';
 import calcFoodCount from '../utils/OrderCounter';
-import Axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -49,7 +48,10 @@ class Profile extends Component {
         }
     }
     fetchCurrentOrder = () => {
-        axios.get('http://localhost:8080/currentOrder')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.get('http://localhost:8080/currentOrder', config)
         .then((response) => {
             this.setState({
                 orderInCart: response.data,
@@ -80,6 +82,7 @@ class Profile extends Component {
         axios({
             method: 'post',
             url: 'http://localhost:8080/credit',
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             data: {
                 credit: this.state.credit
             }
@@ -161,7 +164,10 @@ class Profile extends Component {
     }
     componentDidMount() {
         this.fetchCurrentOrder();
-        axios.get('http://localhost:8080/order')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.get('http://localhost:8080/order', config)
             .then((response) => {
                 this.setState({orders: response.data});
             })
@@ -178,10 +184,13 @@ class Profile extends Component {
         tempOrder[index].count += 1
         this.setState({orderInCart: tempOrder})
         
-        Axios.put('http://localhost:8080/food/' + this.state.restaurantId, null, {params: {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.put('http://localhost:8080/food/' + this.state.restaurantId, null, {params: {
             foodName: this.state.orderInCart[index].name,
             count: 1
-        }})
+        }}, config)
         .then((response) => {
             this.setState({orderInCart: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -198,10 +207,13 @@ class Profile extends Component {
         }
         this.setState({orderInCart: tempOrder})
         
-        Axios.delete('http://localhost:8080/food/' + this.state.restaurantId, {params: {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.delete('http://localhost:8080/food/' + this.state.restaurantId, {params: {
             foodName: this.state.orderInCart[index].name,
             count: 1
-        }})
+        }}, config)
         .then((response) => {
             this.setState({orderInCart: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -211,7 +223,10 @@ class Profile extends Component {
         });
     }
     finalizeOrder() {
-        Axios.put('http://localhost:8080/order')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.put('http://localhost:8080/order', config)
         .then((response) => {
             this.setState({orderInCart: null})
         })

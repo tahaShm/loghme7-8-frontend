@@ -91,9 +91,12 @@ class Home extends Component {
         });
     }
     fetchRestaurants = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         Axios.get('http://localhost:8080/restaurant', {params: {
             showLevel: this.state.showLevel
-        }})
+        }}, config)
         .then((response) => {
             console.log(response)
             this.setState({
@@ -107,9 +110,12 @@ class Home extends Component {
         });
     }
     showMore = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         Axios.get('http://localhost:8080/restaurant', {params: {
             showLevel: this.state.showLevel + 1
-        }})
+        }}, config)
         .then((response) => {
             this.setState({
                 restaurants: response.data,
@@ -122,7 +128,10 @@ class Home extends Component {
         });
     }
     fetchPartyFoods = () => {
-        Axios.get('http://localhost:8080/partyFood')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        Axios.get('http://localhost:8080/partyFood', config)
         .then((response) => {
             this.setState({
                 partyFoods: response.data,
@@ -135,7 +144,10 @@ class Home extends Component {
         });
     }
     fetchCurrentOrder = () => {
-        Axios.get('http://localhost:8080/currentOrder')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        Axios.get('http://localhost:8080/currentOrder', config)
         .then((response) => {
             this.setState({
                 currentOrder: response.data,
@@ -226,11 +238,13 @@ class Home extends Component {
     }
     addPartyFoodFromModal() {
         var food = this.state.partyFoods[this.state.curIdx]
-        console.log(food)
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         Axios.put('http://localhost:8080/partyFood/' + food.restaurantId, null, {params: {
             foodName: food.food.name,
             count: this.state.curFoodCount
-        }})
+        }}, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -247,10 +261,13 @@ class Home extends Component {
         tempOrder[index].count += 1
         this.setState({currentOrder: tempOrder})
         
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         Axios.put('http://localhost:8080/food/' + this.state.restaurantId, null, {params: {
             foodName: this.state.currentOrder[index].name,
             count: 1
-        }})
+        }}, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -267,10 +284,13 @@ class Home extends Component {
         }
         this.setState({currentOrder: tempOrder})
         
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         Axios.delete('http://localhost:8080/food/' + this.state.restaurantId, {params: {
             foodName: this.state.currentOrder[index].name,
             count: 1
-        }})
+        }}, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -280,7 +300,10 @@ class Home extends Component {
         });
     }
     finalizeOrder() {
-        Axios.put('http://localhost:8080/order')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        Axios.put('http://localhost:8080/order', config)
         .then((response) => {
             this.setState({currentOrder: null})
         })

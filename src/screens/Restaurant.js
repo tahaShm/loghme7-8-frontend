@@ -59,7 +59,10 @@ class Restaurant extends Component {
         let index = param.indexOf("/", 1) + 1;
         let restaurantId = param.substr(index);
         this.setState({restaurantId: restaurantId}, function() {
-            axios.get('http://localhost:8080/restaurant/' + this.state.restaurantId)
+            const config = {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            };
+            axios.get('http://localhost:8080/restaurant/' + this.state.restaurantId, config)
             .then((response) => {
                 this.setState({
                     restaurantName: response.data.name,
@@ -75,7 +78,10 @@ class Restaurant extends Component {
             });
         });
 
-        axios.get("http://localhost:8080/currentOrder")
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.get("http://localhost:8080/currentOrder", config)
         .then((response) => {
             this.setState({
                 currentOrder: response.data,
@@ -127,10 +133,13 @@ class Restaurant extends Component {
         tempOrder[index].count += 1
         this.setState({currentOrder: tempOrder})
         
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         axios.put('http://localhost:8080/food/' + this.state.restaurantId, null, {params: {
             foodName: this.state.currentOrder[index].name,
             count: 1
-        }})
+        }}, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -147,10 +156,13 @@ class Restaurant extends Component {
         }
         this.setState({currentOrder: tempOrder})
         
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         axios.delete('http://localhost:8080/food/' + this.state.restaurantId, {params: {
             foodName: this.state.currentOrder[index].name,
             count: 1
-        }})
+        }}, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -170,10 +182,13 @@ class Restaurant extends Component {
     addFoodFromModal() {
         var curIdx = this.state.curIdx
         var curFoodCount = this.state.curFoodCount
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         axios.put('http://localhost:8080/food/' + this.state.restaurantId, null, {params: {
             foodName: this.state.menu[curIdx].name,
             count: curFoodCount
-        }})
+        }}, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -185,7 +200,10 @@ class Restaurant extends Component {
         this.hideFoodModal();
     }
     finalizeOrder() {
-        axios.put('http://localhost:8080/order')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.put('http://localhost:8080/order', config)
         .then((response) => {
             this.setState({currentOrder: null})
         })
