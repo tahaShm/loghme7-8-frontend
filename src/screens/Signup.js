@@ -23,6 +23,7 @@ class Signup extends Component {
         this.showLogin  = this.showLogin.bind(this);
         this.setEmailLogin  = this.setEmailLogin.bind(this);
         this.setPasswordLogin  = this.setPasswordLogin.bind(this);
+        this.fetchProfile  = this.fetchProfile.bind(this);
 
         this.firstNameRef = React.createRef();
         this.lastNameRef = React.createRef();
@@ -112,6 +113,7 @@ class Signup extends Component {
                 })
                 .then((response) => {
                     localStorage.setItem('token', response.data);
+                    this.fetchProfile();
                 })
                 .catch((error) => {
                     // duplicate email
@@ -158,6 +160,7 @@ class Signup extends Component {
                 })
                 .then((response) => {
                     localStorage.setItem('token', response.data);
+                    this.fetchProfile();
                 })
                 .catch((error) => {
                     // wrong password
@@ -194,8 +197,25 @@ class Signup extends Component {
             })
             .then((response) => {
                 localStorage.setItem('token', response.data);
+                this.fetchProfile();
             })
             .catch((error) => {
+                console.log(error)
+            });
+    }
+
+    fetchProfile() {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.get('http://localhost:8080/profile', config)
+            .then(function(response) {
+                localStorage.setItem('firstName', response.data.firstName)
+                localStorage.setItem('lastName', response.data.lastName)
+                localStorage.setItem('email', response.data.email)
+                localStorage.setItem('credit', response.data.credit)
+            })
+            .catch(function(error) {
                 console.log(error)
             });
     }

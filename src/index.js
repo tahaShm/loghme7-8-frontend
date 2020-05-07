@@ -10,17 +10,6 @@ import Restaurant from './screens/Restaurant';
 import Home from './screens/Home';
 import axios from 'axios';
 
-axios.get('http://localhost:8080/profile')
-  .then(function(response) {
-    localStorage.setItem('firstName', response.data.firstName)
-    localStorage.setItem('lastName', response.data.lastName)
-    localStorage.setItem('email', response.data.email)
-    localStorage.setItem('credit', response.data.credit)
-  })
-  .catch(function(error) {
-    console.log(error)
-  });
-
 ReactDOM.render((
   <BrowserRouter>
     <div>
