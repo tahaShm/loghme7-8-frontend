@@ -77,7 +77,10 @@ class Home extends Component {
     }
 
     fetchPartyTime = () => {
-        Axios.get('http://localhost:8080/partyFood/time')
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        Axios.get('http://localhost:8080/partyFood/time', config)
         .then((response) => {
             this.setState({
                 seconds: response.data
@@ -331,10 +334,13 @@ class Home extends Component {
         console.log("r: ", restaurantName, " f: ", foodName)
         if (restaurantName === "" && foodName === "")
             return
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
         Axios.get('http://localhost:8080/search/', {params: {
             restaurantName: restaurantName,
             foodName: foodName
-        }})
+        }}, config)
         .then((response) => {
             this.setState({
                 restaurants: response.data,

@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/font/flaticon.css'
 import '../styles/main.css'
 import Footer from '../components/Footer';
-import axios from 'axios'
+import axios from 'axios';
+import GoogleBtn from '../components/GoogleBtn';
 
 class Signup extends Component {
     constructor(props) {
@@ -106,13 +107,14 @@ class Signup extends Component {
                     lastName: this.state.lastName,
                     email: this.state.email,
                     password: this.state.password,
-                    issuer: "localhost:8080"
+                    issuer: "localhost:3000"
                 }
                 })
                 .then((response) => {
                     localStorage.setItem('token', response.data);
                 })
                 .catch((error) => {
+                    // duplicate email
                     console.log(error)
                 });
         }
@@ -142,6 +144,26 @@ class Signup extends Component {
             this.passwordLoginRef.current.style.borderColor = 'red';
             this.passwordLoginRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
         }
+        // Login
+        if (this.state.passwordLogin != '' && this.state.emailLogin != '') {
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/profile',
+                data: {
+                    email: this.state.emailLogin,
+                    password: this.state.passwordLogin,
+                    authWithGoogle: false,
+                    issuer: "localhost:3000"
+                }
+                })
+                .then((response) => {
+                    localStorage.setItem('token', response.data);
+                })
+                .catch((error) => {
+                    // wrong password
+                    console.log(error)
+                });
+        }
     }
     showSignup(event) {
         this.setState({inSignup: true})
@@ -158,6 +180,24 @@ class Signup extends Component {
         this.signupRef.current.style.visibility = 'hidden';
         this.signupRef.current.style.display = 'none';
         this.forceUpdate();
+    }
+
+    authenticateWithGoogle() {
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/profile',
+            data: {
+                email: this.state.emailLogin,
+                authWithGoogle: true,
+                issuer: "localhost:3000"
+            }
+            })
+            .then((response) => {
+                localStorage.setItem('token', response.data);
+            })
+            .catch((error) => {
+                console.log(error)
+            });
     }
 
     render() {
@@ -230,7 +270,6 @@ class Signup extends Component {
                                             <button type="button" className="btn myCreditBtn" onClick={this.handleSignup}>ثبت نام</button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -258,6 +297,7 @@ class Signup extends Component {
                                         <div className="col-4">
                                             <button type="button" className="btn myCreditBtn" onClick={this.handleLogin}>ورود</button>
                                         </div>
+                                        <GoogleBtn onClick={this.authenticateWithGoogle}/>
                                     </div>
                                 </div>
                             </div>
