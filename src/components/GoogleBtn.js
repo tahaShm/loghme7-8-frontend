@@ -24,7 +24,7 @@ class GoogleBtn extends Component {
         isLogined: true,
         accessToken: response.accessToken
       }));
-      this.props.onClick();
+      this.props.onClick(response.profileObj.email);
     }
   }
 

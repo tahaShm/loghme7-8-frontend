@@ -24,6 +24,7 @@ class Signup extends Component {
         this.setEmailLogin  = this.setEmailLogin.bind(this);
         this.setPasswordLogin  = this.setPasswordLogin.bind(this);
         this.fetchProfile  = this.fetchProfile.bind(this);
+        this.authenticateWithGoogle  = this.authenticateWithGoogle.bind(this);
 
         this.firstNameRef = React.createRef();
         this.lastNameRef = React.createRef();
@@ -102,7 +103,7 @@ class Signup extends Component {
         if (this.state.firstName != '' && this.state.lastName != '' && this.state.email != '' && this.state.password != '') {
             axios({
                 method: 'put',
-                url: 'http://localhost:8080/profile',
+                url: 'http://localhost:8080/authenticate',
                 data: {
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
@@ -114,6 +115,7 @@ class Signup extends Component {
                 .then((response) => {
                     localStorage.setItem('token', response.data);
                     this.fetchProfile();
+                    window.location.href = '/home';
                 })
                 .catch((error) => {
                     // duplicate email
@@ -150,7 +152,7 @@ class Signup extends Component {
         if (this.state.passwordLogin != '' && this.state.emailLogin != '') {
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/profile',
+                url: 'http://localhost:8080/authenticate',
                 data: {
                     email: this.state.emailLogin,
                     password: this.state.passwordLogin,
@@ -161,6 +163,7 @@ class Signup extends Component {
                 .then((response) => {
                     localStorage.setItem('token', response.data);
                     this.fetchProfile();
+                    window.location.href = '/home';
                 })
                 .catch((error) => {
                     // wrong password
@@ -185,12 +188,12 @@ class Signup extends Component {
         this.forceUpdate();
     }
 
-    authenticateWithGoogle() {
+    authenticateWithGoogle(email) {
         axios({
             method: 'post',
-            url: 'http://localhost:8080/profile',
+            url: 'http://localhost:8080/authenticate',
             data: {
-                email: this.state.emailLogin,
+                email: email,
                 authWithGoogle: true,
                 issuer: "localhost:3000"
             }
@@ -198,6 +201,8 @@ class Signup extends Component {
             .then((response) => {
                 localStorage.setItem('token', response.data);
                 this.fetchProfile();
+                window.location.href = '/home';
+                console.log('here')
             })
             .catch((error) => {
                 console.log(error)
