@@ -88,9 +88,15 @@ class Home extends Component {
         });
     }
     fetchRestaurants = () => {
-        Axios.get('http://localhost:8080/restaurant', {params: {
-            showLevel: this.state.showLevel
-        }})
+        let configs = {
+            params: {
+                showLevel: this.state.showLevel 
+            },
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }
+        Axios.get('http://localhost:8080/restaurant', configs)
         .then((response) => {
             console.log(response)
             this.setState({
@@ -104,9 +110,15 @@ class Home extends Component {
         });
     }
     showMore = () => {
-        Axios.get('http://localhost:8080/restaurant', {params: {
-            showLevel: this.state.showLevel + 1
-        }})
+        let configs = {
+            params: {
+                showLevel: this.state.showLevel 
+            },
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }
+        Axios.get('http://localhost:8080/restaurant', configs)
         .then((response) => {
             this.setState({
                 restaurants: response.data,
