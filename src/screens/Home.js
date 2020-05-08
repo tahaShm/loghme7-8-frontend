@@ -88,6 +88,7 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
+            this.props.history.push('/');
         });
     }
     fetchRestaurants = () => {
@@ -108,7 +109,7 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/home');
+            this.props.history.push('/');
         });
     }
     showMore = () => {
@@ -127,7 +128,7 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/home');
+            this.props.history.push('/');
         });
     }
     fetchPartyFoods = () => {
@@ -143,7 +144,7 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/home');
+            this.props.history.push('/');
         });
     }
     fetchCurrentOrder = () => {
@@ -159,6 +160,7 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
+            this.props.history.push('/home');
         });
     }
 
@@ -379,6 +381,7 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
+            this.props.history.push('/home');
         });
     }
 
