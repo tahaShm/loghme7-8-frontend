@@ -56,7 +56,7 @@ class Signup extends Component {
         if (localStorage.getItem('token') !== '') {
             axios({
                 method: 'get',
-                url: 'http://localhost:8080/login'
+                url: 'http://localhost:8080/checkAuth'
                 })
                 .then((response) => {
                     this.fetchProfile();
