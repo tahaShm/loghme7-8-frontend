@@ -8,7 +8,6 @@ import Signup from './screens/Signup';
 import Profile from './screens/Profile';
 import Restaurant from './screens/Restaurant';
 import Home from './screens/Home';
-import axios from 'axios';
 
 ReactDOM.render((
   <BrowserRouter>

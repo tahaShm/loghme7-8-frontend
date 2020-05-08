@@ -163,8 +163,24 @@ class Profile extends Component {
         }
         return totalPrice;
     }
+    fetchProfile() {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        };
+        axios.get('http://localhost:8080/profile', config)
+            .then(function(response) {
+                localStorage.setItem('firstName', response.data.firstName)
+                localStorage.setItem('lastName', response.data.lastName)
+                localStorage.setItem('email', response.data.email)
+                localStorage.setItem('credit', response.data.credit)
+            })
+            .catch(function(error) {
+                console.log(error)
+            });
+    }
     componentDidMount() {
         this.fetchCurrentOrder();
+        this.fetchProfile();
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
