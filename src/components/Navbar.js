@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Logo from '../images/LOGO.png'
 import toPersianNum from '../utils/PersianNumber'
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     constructor(props) {
@@ -17,6 +18,10 @@ class Navbar extends Component {
     }
     componentWillReceiveProps(nextProps) {
         this.setState({reservedFoods: nextProps.reservedFoods});
+    }
+    logout() {
+        localStorage.setItem('token', '');
+        window.location.href = '/';
     }
     render() {
         return (
@@ -41,7 +46,7 @@ class Navbar extends Component {
                         </li>
                     }
                     <li className="nav-item mx-3">
-                        <a className="nav-link myNav-exit" href="">خروج</a>
+                        <Link className="nav-link myNav-exit" onClick={this.logout}>خروج</Link>
                     </li>
                 </ul>
             </nav>
