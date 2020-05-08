@@ -92,11 +92,13 @@ class Home extends Component {
     }
     fetchRestaurants = () => {
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: {
+                showLevel: this.state.showLevel
+            }
         };
-        Axios.get('http://localhost:8080/restaurant', {params: {
-            showLevel: this.state.showLevel
-        }}, config)
+        console.log(config)
+        Axios.get('http://localhost:8080/restaurant', config)
         .then((response) => {
             console.log(response)
             this.setState({
@@ -111,11 +113,12 @@ class Home extends Component {
     }
     showMore = () => {
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }, 
+            params: {
+                showLevel: this.state.showLevel + 1
+            }
         };
-        Axios.get('http://localhost:8080/restaurant', {params: {
-            showLevel: this.state.showLevel + 1
-        }}, config)
+        Axios.get('http://localhost:8080/restaurant', config)
         .then((response) => {
             this.setState({
                 restaurants: response.data,
@@ -190,7 +193,7 @@ class Home extends Component {
     }
     redirectRestaurant = (index) => {
         let path = '/restaurant/' + this.state.restaurants[index].id;
-        window.location.href = "http://localhost:3000" + path
+        window.location.href = path
     }
     renderRestaurantCards() {
         if (this.state.restaurants != null && this.state.restaurants !== ""){
@@ -239,12 +242,13 @@ class Home extends Component {
     addPartyFoodFromModal() {
         var food = this.state.partyFoods[this.state.curIdx]
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: {
+                foodName: food.food.name,
+                count: this.state.curFoodCount
+            }
         };
-        Axios.put('http://localhost:8080/partyFood/' + food.restaurantId, null, {params: {
-            foodName: food.food.name,
-            count: this.state.curFoodCount
-        }}, config)
+        Axios.post('http://localhost:8080/partyFood/' + food.restaurantId, null, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -262,12 +266,13 @@ class Home extends Component {
         this.setState({currentOrder: tempOrder})
         
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: {
+                foodName: this.state.currentOrder[index].name,
+                count: 1
+            }
         };
-        Axios.put('http://localhost:8080/food/' + this.state.restaurantId, null, {params: {
-            foodName: this.state.currentOrder[index].name,
-            count: 1
-        }}, config)
+        Axios.post('http://localhost:8080/food/' + this.state.restaurantId, null, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -285,12 +290,13 @@ class Home extends Component {
         this.setState({currentOrder: tempOrder})
         
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: {
+                foodName: this.state.currentOrder[index].name,
+                count: 1
+            }
         };
-        Axios.delete('http://localhost:8080/food/' + this.state.restaurantId, {params: {
-            foodName: this.state.currentOrder[index].name,
-            count: 1
-        }}, config)
+        Axios.delete('http://localhost:8080/food/' + this.state.restaurantId, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -303,7 +309,7 @@ class Home extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        Axios.put('http://localhost:8080/order', config)
+        Axios.post('http://localhost:8080/order', null, config)
         .then((response) => {
             this.setState({currentOrder: null})
         })
@@ -358,12 +364,13 @@ class Home extends Component {
         if (restaurantName === "" && foodName === "")
             return
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: {
+                restaurantName: restaurantName,
+                foodName: foodName
+            }
         };
-        Axios.get('http://localhost:8080/search/', {params: {
-            restaurantName: restaurantName,
-            foodName: foodName
-        }}, config)
+        Axios.get('http://localhost:8080/search/', config)
         .then((response) => {
             this.setState({
                 restaurants: response.data,

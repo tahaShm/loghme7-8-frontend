@@ -27,7 +27,7 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-sm bg-light fixed-top">
                 <div className="mx-3">
-                    <a className="navbar-brand" href="http://localhost:3000/home">
+                    <a className="navbar-brand" href="/home">
                         <img className = "myNav-logo" src={Logo} alt="logo"/>
                     </a>
                 </div>
@@ -42,7 +42,7 @@ class Navbar extends Component {
                     </li>
                     {this.state.userAccountField &&
                         <li className="nav-item">
-                            <a className="nav-link myNav-account" href="http://localhost:3000/profile">حساب کاربری</a>
+                            <a className="nav-link myNav-account" href="/profile">حساب کاربری</a>
                         </li>
                     }
                     <li className="nav-item mx-3">

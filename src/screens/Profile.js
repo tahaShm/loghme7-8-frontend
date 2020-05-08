@@ -189,6 +189,7 @@ class Profile extends Component {
                 this.setState({orders: response.data});
             })
             .catch((error) => {
+                window.location.href = '/';
                 console.log(error)
             });
     }
@@ -202,12 +203,13 @@ class Profile extends Component {
         this.setState({orderInCart: tempOrder})
         
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: {
+                foodName: this.state.orderInCart[index].name,
+                count: 1
+            }
         };
-        axios.put('http://localhost:8080/food/' + this.state.restaurantId, null, {params: {
-            foodName: this.state.orderInCart[index].name,
-            count: 1
-        }}, config)
+        axios.post('http://localhost:8080/food/' + this.state.restaurantId, null, config)
         .then((response) => {
             this.setState({orderInCart: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -225,12 +227,13 @@ class Profile extends Component {
         this.setState({orderInCart: tempOrder})
         
         const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            params: {
+                foodName: this.state.orderInCart[index].name,
+                count: 1
+            }
         };
-        axios.delete('http://localhost:8080/food/' + this.state.restaurantId, {params: {
-            foodName: this.state.orderInCart[index].name,
-            count: 1
-        }}, config)
+        axios.delete('http://localhost:8080/food/' + this.state.restaurantId, config)
         .then((response) => {
             this.setState({orderInCart: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -243,7 +246,7 @@ class Profile extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        axios.put('http://localhost:8080/order', config)
+        axios.post('http://localhost:8080/order', null, config)
         .then((response) => {
             this.setState({orderInCart: null})
         })

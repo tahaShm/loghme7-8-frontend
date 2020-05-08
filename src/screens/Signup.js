@@ -102,8 +102,8 @@ class Signup extends Component {
         // Signup
         if (this.state.firstName != '' && this.state.lastName != '' && this.state.email != '' && this.state.password != '') {
             axios({
-                method: 'put',
-                url: 'http://localhost:8080/authenticate',
+                method: 'post',
+                url: 'http://localhost:8080/signup',
                 data: {
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
@@ -152,7 +152,7 @@ class Signup extends Component {
         if (this.state.passwordLogin != '' && this.state.emailLogin != '') {
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/authenticate',
+                url: 'http://localhost:8080/login',
                 data: {
                     email: this.state.emailLogin,
                     password: this.state.passwordLogin,
@@ -191,7 +191,7 @@ class Signup extends Component {
     authenticateWithGoogle(email) {
         axios({
             method: 'post',
-            url: 'http://localhost:8080/authenticate',
+            url: 'http://localhost:8080/login',
             data: {
                 email: email,
                 authWithGoogle: true,
