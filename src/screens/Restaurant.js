@@ -74,7 +74,10 @@ class Restaurant extends Component {
             })
             .catch((error) => {
                 console.log(error);
-                this.props.history.push('/home');
+                if (error.response.status == 403 || error.response.status == 401)
+                    window.location.href = '/';
+                else 
+                    this.props.history.push('/home');
             });
         });
 
@@ -89,6 +92,8 @@ class Restaurant extends Component {
             })
         })
         .catch((error) => {
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
             console.log(error);
         });
     }
@@ -146,6 +151,8 @@ class Restaurant extends Component {
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
         })
         .catch((error) => {
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
             console.log(error);
         });
     }
@@ -170,6 +177,8 @@ class Restaurant extends Component {
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
         })
         .catch((error) => {
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
             console.log(error);
         });
     }
@@ -198,7 +207,10 @@ class Restaurant extends Component {
         })
         .catch((error) => {
             console.log(error);
-            toast.error('همه ی غذا ها باید از یک رستوران باشند', {containerId: 'differentRestaurant'});
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
+            else 
+                toast.error('همه ی غذا ها باید از یک رستوران باشند', {containerId: 'differentRestaurant'});
         });
         this.hideFoodModal();
     }
@@ -212,7 +224,10 @@ class Restaurant extends Component {
         })
         .catch((error) => {
             console.log(error);
-            toast.error('موجودی حساب شما کافی نیست.', {containerId: 'notEnoughCredit'});
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
+            else 
+                toast.error('موجودی حساب شما کافی نیست.', {containerId: 'notEnoughCredit'});
         });
         this.setState({foodCountInOrder: 0});
         this.setState({showCartModal: false})

@@ -8,6 +8,7 @@ import '../styles/main.css'
 import Footer from '../components/Footer';
 import axios from 'axios';
 import GoogleBtn from '../components/GoogleBtn';
+import { ToastContainer, toast } from 'react-toastify';
 
 class Signup extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class Signup extends Component {
         this.setPasswordLogin  = this.setPasswordLogin.bind(this);
         this.fetchProfile  = this.fetchProfile.bind(this);
         this.authenticateWithGoogle  = this.authenticateWithGoogle.bind(this);
+        this.clearFields  = this.clearFields.bind(this);
 
         this.firstNameRef = React.createRef();
         this.lastNameRef = React.createRef();
@@ -45,6 +47,27 @@ class Signup extends Component {
             inSignup: true
         }
     }
+
+    componentWillMount() {
+        this.checkAuthentication();
+    }
+
+    async checkAuthentication() {
+        if (localStorage.getItem('token') !== '') {
+            axios({
+                method: 'get',
+                url: 'http://localhost:8080/login'
+                })
+                .then((response) => {
+                    this.fetchProfile();
+                    window.location.href = '/home';
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        }
+    }
+
     setFirstName(event) {
         this.setState({firstName: event.target.value});
         this.firstNameRef.current.style.borderColor = 'gray';
@@ -62,45 +85,64 @@ class Signup extends Component {
         this.passwordRef.current.style.borderColor = 'gray';
     }
 
+    clearFields() {
+        this.setState({
+            firstName : '',
+            lastName : '',
+            email : '',
+            password : '',
+            emailLogin : '',
+            passwordLogin : ''
+        });
+    }
+
     handleSignup(event) {
+        var validInput = true;
         // First Name
         if (this.state.firstName == null || this.state.firstName === "") {
             this.firstNameRef.current.style.borderColor = 'red';
             this.firstNameRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+            validInput = false;
         }
         else if (!isStringFarsi(this.state.firstName)) {
             this.setState({firstName : ''});
             this.firstNameRef.current.style.borderColor = 'red';
             this.firstNameRef.current.placeholder = 'از حروف فارسی استفاده کنید!';
+            validInput = false;
         }
         // Last Name
         if (this.state.lastName == null || this.state.lastName === "") {
             this.lastNameRef.current.style.borderColor = 'red';
             this.lastNameRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+            validInput = false;
         }
         else if (!isStringFarsi(this.state.lastName)) {
             this.setState({lastName : ''});
             this.lastNameRef.current.style.borderColor = 'red';
             this.lastNameRef.current.placeholder = 'از حروف فارسی استفاده کنید!';
+            validInput = false;
         }
         // Email
         if (this.state.email == null || this.state.email === "") {
             this.emailRef.current.style.borderColor = 'red';
             this.emailRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+            validInput = false;
         }
         else if (!this.state.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
             this.setState({email : ''});
             this.emailRef.current.style.borderColor = 'red';
             this.emailRef.current.placeholder = 'ایمیل وارد شده معتبر نیست!';
+            validInput = false;
         }
         // Password
         if (this.state.password == null || this.state.password === "") {
             this.passwordRef.current.style.borderColor = 'red';
             this.passwordRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+            validInput = false;
         }
 
         // Signup
-        if (this.state.firstName != '' && this.state.lastName != '' && this.state.email != '' && this.state.password != '') {
+        if (validInput) {
             axios({
                 method: 'post',
                 url: 'http://localhost:8080/signup',
@@ -118,7 +160,8 @@ class Signup extends Component {
                     window.location.href = '/home';
                 })
                 .catch((error) => {
-                    // duplicate email
+                    toast.error('ایمیل وارد شده قبلا استفاده شده است', {containerId: 'wrongSignup'});
+                    this.clearFields();
                     console.log(error)
                 });
         }
@@ -133,23 +176,27 @@ class Signup extends Component {
         this.passwordLoginRef.current.style.borderColor = 'gray';
     }
     handleLogin(event) {
+        var validInput = true;
         // Email
         if (this.state.emailLogin == null || this.state.emailLogin === "") {
             this.emailLoginRef.current.style.borderColor = 'red';
             this.emailLoginRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+            validInput = false;
         }
         else if (!this.state.emailLogin.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
             this.setState({emailLogin : ''});
             this.emailLoginRef.current.style.borderColor = 'red';
             this.emailLoginRef.current.placeholder = 'ایمیل وارد شده معتبر نیست!';
+            validInput = false;
         }
         // Password
         if (this.state.passwordLogin == null || this.state.passwordLogin === "") {
             this.passwordLoginRef.current.style.borderColor = 'red';
             this.passwordLoginRef.current.placeholder = 'پر کردن این قسمت الزامی است!';
+            validInput = false;
         }
         // Login
-        if (this.state.passwordLogin != '' && this.state.emailLogin != '') {
+        if (validInput) {
             axios({
                 method: 'post',
                 url: 'http://localhost:8080/login',
@@ -166,7 +213,8 @@ class Signup extends Component {
                     window.location.href = '/home';
                 })
                 .catch((error) => {
-                    // wrong password
+                    toast.error('نام کاربری یا رمز عبور اشتباه است', {containerId: 'wrongLogin'});
+                    this.clearFields();
                     console.log(error)
                 });
         }
@@ -202,9 +250,9 @@ class Signup extends Component {
                 localStorage.setItem('token', response.data);
                 this.fetchProfile();
                 window.location.href = '/home';
-                console.log('here')
             })
             .catch((error) => {
+                toast.error('نام کاربری یا رمز عبور اشتباه است', {containerId: 'wrongLogin'});
                 console.log(error)
             });
     }
@@ -239,6 +287,8 @@ class Signup extends Component {
         document.body.classList.add('mySignupBody');
         return (
             <div>
+                <ToastContainer enableMultiContainer containerId={'wrongLogin'} type = {toast.TYPE.ERROR} position={toast.POSITION.TOP_CENTER} />
+                <ToastContainer enableMultiContainer containerId={'wrongSignup'} type = {toast.TYPE.ERROR} position={toast.POSITION.TOP_CENTER} />
                 <div>
                     <header>         
                         <img className="mySignupLogo" src={logo} alt="logo"/>

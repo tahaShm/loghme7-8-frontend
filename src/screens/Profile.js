@@ -60,6 +60,7 @@ class Profile extends Component {
             })
         })
         .catch((error) => {
+            window.location.href = '/'
             console.log(error);
         });
     }
@@ -93,6 +94,7 @@ class Profile extends Component {
                 this.setState({userCredit: localStorage.getItem('credit')});
             })
             .catch((error) => {
+                window.location.href = '/'
                 console.log(error)
             });
 
@@ -175,6 +177,7 @@ class Profile extends Component {
                 localStorage.setItem('credit', response.data.credit)
             })
             .catch(function(error) {
+                window.location.href = '/'
                 console.log(error)
             });
     }
@@ -215,6 +218,8 @@ class Profile extends Component {
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
         })
         .catch((error) => {
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
             console.log(error);
         });
     }
@@ -239,6 +244,8 @@ class Profile extends Component {
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
         })
         .catch((error) => {
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
             console.log(error);
         });
     }
@@ -252,7 +259,10 @@ class Profile extends Component {
         })
         .catch((error) => {
             console.log(error);
-            toast.error('موجودی حساب شما کافی نیست.', {containerId: 'notEnoughCredit'});
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
+            else
+                toast.error('موجودی حساب شما کافی نیست.', {containerId: 'notEnoughCredit'});
         });
         this.setState({foodCountInOrder: 0});
         this.setState({showCartModal: false})
