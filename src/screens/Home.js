@@ -88,7 +88,8 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/');
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
         });
     }
     fetchRestaurants = () => {
@@ -109,7 +110,8 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/');
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
         });
     }
     showMore = () => {
@@ -128,7 +130,8 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/');
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
         });
     }
     fetchPartyFoods = () => {
@@ -144,7 +147,8 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/');
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
         });
     }
     fetchCurrentOrder = () => {
@@ -160,7 +164,10 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/home');
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
+            else 
+                this.props.history.push('/home');
         });
     }
 
@@ -257,7 +264,10 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            toast.error('همه ی غذا ها باید از یک رستوران باشند، همچنین به تعداد موجودی نیز دقت کنید', {containerId: 'differentRestaurant'});
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
+            else 
+                toast.error('همه ی غذا ها باید از یک رستوران باشند، همچنین به تعداد موجودی نیز دقت کنید', {containerId: 'differentRestaurant'});
         });
         this.hidePartyFoodModal();
     }
@@ -317,7 +327,10 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            toast.error('موجودی حساب شما کافی نیست.', {containerId: 'notEnoughCredit'});
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
+            else 
+                toast.error('موجودی حساب شما کافی نیست.', {containerId: 'notEnoughCredit'});
         });
         this.setState({foodCountInOrder: 0});
         this.setState({showCartModal: false})
@@ -381,7 +394,10 @@ class Home extends Component {
         })
         .catch((error) => {
             console.log(error);
-            this.props.history.push('/home');
+            if (error.response.status == 403 || error.response.status == 401)
+                window.location.href = '/';
+            else
+                this.props.history.push('/home');
         });
     }
 
