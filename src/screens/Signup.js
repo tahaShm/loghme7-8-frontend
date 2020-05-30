@@ -64,7 +64,7 @@ class Signup extends Component {
                 })
                 .catch((error) => {
                     console.log(error)
-                    window.location.href = '/home';
+                    // window.location.href = '/home';
                 });
         }
     }
