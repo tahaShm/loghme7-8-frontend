@@ -56,7 +56,7 @@ class Signup extends Component {
         if (localStorage.getItem('token') !== '') {
             axios({
                 method: 'get',
-                url: 'http://localhost:8080/checkAuth'
+                url: 'http://ie.etuts.ir:32100/checkAuth'
                 })
                 .then((response) => {
                     this.fetchProfile();
@@ -146,13 +146,13 @@ class Signup extends Component {
         if (validInput) {
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/signup',
+                url: 'http://ie.etuts.ir:32100/signup',
                 data: {
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
                     email: this.state.email,
                     password: this.state.password,
-                    issuer: "localhost:3000"
+                    issuer: "ie.etuts.ir:32000"
                 }
                 })
                 .then((response) => {
@@ -200,12 +200,12 @@ class Signup extends Component {
         if (validInput) {
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/login',
+                url: 'http://ie.etuts.ir:32100/login',
                 data: {
                     email: this.state.emailLogin,
                     password: this.state.passwordLogin,
                     authWithGoogle: false,
-                    issuer: "localhost:3000"
+                    issuer: "ie.etuts.ir:32000"
                 }
                 })
                 .then((response) => {
@@ -240,11 +240,11 @@ class Signup extends Component {
     authenticateWithGoogle(email) {
         axios({
             method: 'post',
-            url: 'http://localhost:8080/login',
+            url: 'http://ie.etuts.ir:32100/login',
             data: {
                 email: email,
                 authWithGoogle: true,
-                issuer: "localhost:3000"
+                issuer: "ie.etuts.ir:32000"
             }
             })
             .then((response) => {
@@ -262,7 +262,7 @@ class Signup extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        axios.get('http://localhost:8080/profile', config)
+        axios.get('http://ie.etuts.ir:32100/profile', config)
             .then(function(response) {
                 localStorage.setItem('firstName', response.data.firstName)
                 localStorage.setItem('lastName', response.data.lastName)

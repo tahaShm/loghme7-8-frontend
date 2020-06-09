@@ -62,7 +62,7 @@ class Restaurant extends Component {
             const config = {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             };
-            axios.get('http://localhost:8080/restaurant/' + this.state.restaurantId, config)
+            axios.get('http://ie.etuts.ir:32100/restaurant/' + this.state.restaurantId, config)
             .then((response) => {
                 this.setState({
                     restaurantName: response.data.name,
@@ -84,7 +84,7 @@ class Restaurant extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        axios.get("http://localhost:8080/currentOrder", config)
+        axios.get("http://ie.etuts.ir:32100/currentOrder", config)
         .then((response) => {
             this.setState({
                 currentOrder: response.data,
@@ -145,7 +145,7 @@ class Restaurant extends Component {
                 count: 1
             }
         };
-        axios.post('http://localhost:8080/food/' + this.state.restaurantId, null, config)
+        axios.post('http://ie.etuts.ir:32100/food/' + this.state.restaurantId, null, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -171,7 +171,7 @@ class Restaurant extends Component {
                 count: 1
             }
         };
-        axios.delete('http://localhost:8080/food/' + this.state.restaurantId, config)
+        axios.delete('http://ie.etuts.ir:32100/food/' + this.state.restaurantId, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -200,7 +200,7 @@ class Restaurant extends Component {
                 count: curFoodCount
             }
         };
-        axios.post('http://localhost:8080/food/' + this.state.restaurantId, null, config)
+        axios.post('http://ie.etuts.ir:32100/food/' + this.state.restaurantId, null, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -218,7 +218,7 @@ class Restaurant extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        axios.post('http://localhost:8080/order', null, config)
+        axios.post('http://ie.etuts.ir:32100/order', null, config)
         .then((response) => {
             this.setState({currentOrder: null})
         })

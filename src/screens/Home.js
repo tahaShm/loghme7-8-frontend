@@ -80,7 +80,7 @@ class Home extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        Axios.get('http://localhost:8080/partyFood/time', config)
+        Axios.get('http://ie.etuts.ir:32100/partyFood/time', config)
         .then((response) => {
             this.setState({
                 seconds: response.data
@@ -100,7 +100,7 @@ class Home extends Component {
             }
         };
         console.log(config)
-        Axios.get('http://localhost:8080/restaurant', config)
+        Axios.get('http://ie.etuts.ir:32100/restaurant', config)
         .then((response) => {
             console.log(response)
             this.setState({
@@ -121,7 +121,7 @@ class Home extends Component {
                 showLevel: this.state.showLevel + 1
             }
         };
-        Axios.get('http://localhost:8080/restaurant', config)
+        Axios.get('http://ie.etuts.ir:32100/restaurant', config)
         .then((response) => {
             this.setState({
                 restaurants: response.data,
@@ -138,7 +138,7 @@ class Home extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        Axios.get('http://localhost:8080/partyFood', config)
+        Axios.get('http://ie.etuts.ir:32100/partyFood', config)
         .then((response) => {
             this.setState({
                 partyFoods: response.data,
@@ -155,7 +155,7 @@ class Home extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        Axios.get('http://localhost:8080/currentOrder', config)
+        Axios.get('http://ie.etuts.ir:32100/currentOrder', config)
         .then((response) => {
             this.setState({
                 currentOrder: response.data,
@@ -257,7 +257,7 @@ class Home extends Component {
                 count: this.state.curFoodCount
             }
         };
-        Axios.post('http://localhost:8080/partyFood/' + food.restaurantId, null, config)
+        Axios.post('http://ie.etuts.ir:32100/partyFood/' + food.restaurantId, null, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -284,7 +284,7 @@ class Home extends Component {
                 count: 1
             }
         };
-        Axios.post('http://localhost:8080/food/' + this.state.restaurantId, null, config)
+        Axios.post('http://ie.etuts.ir:32100/food/' + this.state.restaurantId, null, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -308,7 +308,7 @@ class Home extends Component {
                 count: 1
             }
         };
-        Axios.delete('http://localhost:8080/food/' + this.state.restaurantId, config)
+        Axios.delete('http://ie.etuts.ir:32100/food/' + this.state.restaurantId, config)
         .then((response) => {
             this.setState({currentOrder: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -321,7 +321,7 @@ class Home extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        Axios.post('http://localhost:8080/order', null, config)
+        Axios.post('http://ie.etuts.ir:32100/order', null, config)
         .then((response) => {
             this.setState({currentOrder: null})
         })
@@ -385,7 +385,7 @@ class Home extends Component {
                 foodName: foodName
             }
         };
-        Axios.get('http://localhost:8080/search/', config)
+        Axios.get('http://ie.etuts.ir:32100/search/', config)
         .then((response) => {
             this.setState({
                 restaurants: response.data,

@@ -4,3 +4,6 @@
 4. run nginx : https://www.javatpoint.com/how-to-install-nginx-on-windows (in cmd)
 5. dockerize react app with : https://mherman.org/blog/dockerizing-a-react-app/ and https://stackoverflow.com/questions/41485217/mount-current-directory-as-a-volume-in-docker-on-windows-10
 
+6. deploy in kubernetes : https://dev.to/rieckpil/deploy-a-react-application-to-kubernetes-in-5-easy-steps-516j
+
+

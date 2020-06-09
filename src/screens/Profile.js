@@ -52,7 +52,7 @@ class Profile extends Component {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
         console.log("config: ", localStorage.getItem('token'))
-        axios.get('http://localhost:8080/currentOrder', config)
+        axios.get('http://ie.etuts.ir:32100/currentOrder', config)
         .then((response) => {
             this.setState({
                 orderInCart: response.data,
@@ -83,7 +83,7 @@ class Profile extends Component {
         
         axios({
             method: 'post',
-            url: 'http://localhost:8080/credit',
+            url: 'http://ie.etuts.ir:32100/credit',
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             data: {
                 credit: this.state.credit
@@ -169,7 +169,7 @@ class Profile extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        axios.get('http://localhost:8080/profile', config)
+        axios.get('http://ie.etuts.ir:32100/profile', config)
             .then(function(response) {
                 localStorage.setItem('firstName', response.data.firstName)
                 localStorage.setItem('lastName', response.data.lastName)
@@ -187,7 +187,7 @@ class Profile extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        axios.get('http://localhost:8080/order', config)
+        axios.get('http://ie.etuts.ir:32100/order', config)
             .then((response) => {
                 this.setState({orders: response.data});
             })
@@ -212,7 +212,7 @@ class Profile extends Component {
                 count: 1
             }
         };
-        axios.post('http://localhost:8080/food/' + this.state.restaurantId, null, config)
+        axios.post('http://ie.etuts.ir:32100/food/' + this.state.restaurantId, null, config)
         .then((response) => {
             this.setState({orderInCart: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -238,7 +238,7 @@ class Profile extends Component {
                 count: 1
             }
         };
-        axios.delete('http://localhost:8080/food/' + this.state.restaurantId, config)
+        axios.delete('http://ie.etuts.ir:32100/food/' + this.state.restaurantId, config)
         .then((response) => {
             this.setState({orderInCart: response.data})
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
@@ -253,7 +253,7 @@ class Profile extends Component {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         };
-        axios.post('http://localhost:8080/order', null, config)
+        axios.post('http://ie.etuts.ir:32100/order', null, config)
         .then((response) => {
             this.setState({orderInCart: null})
         })
