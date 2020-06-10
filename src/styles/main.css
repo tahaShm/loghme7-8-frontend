@@ -869,10 +869,10 @@ body {
     border-radius: 5px; 
     border-width: 1px; 
     text-align: center; 
-    height: 2vw; 
+    height: 1.5vw; 
     color: rgb(148, 156, 156); 
     background-color: #F7FFF7;
-    padding-top: 0.2vw;
+    padding-top: 0.1vw;
 }
 .myPartyBuyBtn {
     color: white; 
@@ -881,7 +881,7 @@ body {
     cursor: pointer; 
     font-size: 0.9vw; 
     width: 100%; 
-    height: 2vw; 
+    height: 1.5vw; 
     padding-top: 0px; 
     margin-bottom: 16px;
 }
@@ -901,8 +901,8 @@ body {
     width: 9vw;
 }
 .myPartyRestaurant {
-    margin-top: -15px; 
-    font-size: 1.2vw;
+    margin-top: -12px; 
+    font-size: 1.0vw;
 
 }
 .myNormalRestaurantName {
@@ -913,12 +913,12 @@ body {
 }
 .myShowMenuBtn {
     margin-top: -10px;
-    font-size: 1.1vw;
+    font-size: 1.0vw;
     background-color: #FFE66D;
     padding-bottom: 3px;
     padding-top: 3px;
-    width: 50%;
-    height: 2.8vw;
+    width: 60%;
+    height: 1.9vw;
 }
 .myShowMenuBtn:hover {
     background-color: rgb(250, 217, 51);
@@ -976,6 +976,19 @@ body {
         height: 10vw;
         width: 10vw;
     }
+    .myPartyBuyBtn { 
+        height: 1.8vw; 
+    }
+    .myRemainingFood {
+        height: 1.8vw; 
+    }
+    .myShowMenuBtn {
+        font-size: 1.5vw;
+        height: 3.0vw;
+    }
+    .myNormalRestaurantName {
+        font-size: 1.5vw;
+    }
 }
 @media screen and (max-width: 1000px) {
     .myHomeHeader {
@@ -1030,6 +1043,19 @@ body {
         height: 12vw;
         width: 12vw;
     }
+    .myPartyBuyBtn { 
+        height: 2vw; 
+    }
+    .myRemainingFood {
+        height: 2vw; 
+    }
+    .myShowMenuBtn {
+        font-size: 1.6vw;
+        height: 3.2vw;
+    }
+    .myNormalRestaurantName {
+        font-size: 1.6vw;
+    }
 }
 .myDescriptionDiv {
     margin-left: 1vw;
@@ -1054,6 +1080,7 @@ body {
     padding-bottom: 3px;
     padding-top: 3px;
     padding: 5px 40px;
+    font-size: 1.2vw;
 }
 .showMoreButton:hover {
     background-color: #32b3aa;
