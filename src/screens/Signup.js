@@ -54,18 +54,17 @@ class Signup extends Component {
 
     async checkAuthentication() {
         if (localStorage.getItem('token') !== '') {
-            axios({
-                method: 'get',
-                url: 'http://ie.etuts.ir:32100/checkAuth'
-                })
-                .then((response) => {
-                    this.fetchProfile();
-                    window.location.href = '/home';
-                })
-                .catch((error) => {
-                    console.log(error)
-                    window.location.href = '/home';
-                });
+            const config = {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            };
+            axios.get('http://ie.etuts.ir:32100/checkAuth', config)
+            .then((response) => {
+                this.fetchProfile();
+                window.location.href = '/home';
+            })
+            .catch((error) => {
+                console.log(error)
+            });
         }
     }
 
@@ -253,7 +252,7 @@ class Signup extends Component {
                 window.location.href = '/home';
             })
             .catch((error) => {
-                toast.error('نام کاربری یا رمز عبور اشتباه است', {containerId: 'wrongLogin'});
+                toast.error('این نام کاربری وجود ندارد!', {containerId: 'wrongLogin'});
                 console.log(error)
             });
     }

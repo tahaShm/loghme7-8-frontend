@@ -37,7 +37,7 @@ class GoogleBtn extends Component {
 
   handleLoginFailure (response) {
     console.log(response)
-    alert('Failed to log in')
+    alert('Could\'t connect to google login API')
   }
 
   handleLogoutFailure (response) {
