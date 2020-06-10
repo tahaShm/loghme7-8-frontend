@@ -218,8 +218,6 @@ class Profile extends Component {
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
         })
         .catch((error) => {
-            if (error.response.status == 403 || error.response.status == 401)
-                window.location.href = '/';
             console.log(error);
         });
     }
@@ -244,8 +242,6 @@ class Profile extends Component {
             this.setState({foodCountInOrder: calcFoodCount(response.data)});
         })
         .catch((error) => {
-            if (error.response.status == 403 || error.response.status == 401)
-                window.location.href = '/';
             console.log(error);
         });
     }
@@ -256,6 +252,7 @@ class Profile extends Component {
         axios.post('http://ie.etuts.ir:32100/order', null, config)
         .then((response) => {
             this.setState({orderInCart: null})
+            toast.success('سفارش شما با موفقیت ثبت شد!', {containerId: 'finalizeSuccess'});
         })
         .catch((error) => {
             console.log(error);
@@ -289,6 +286,7 @@ class Profile extends Component {
             <div>
                 <ToastContainer enableMultiContainer containerId={'differentRestaurant'} type = {toast.TYPE.ERROR} position={toast.POSITION.TOP_CENTER} />
                 <ToastContainer enableMultiContainer containerId={'notEnoughCredit'} type = {toast.TYPE.ERROR} position={toast.POSITION.TOP_CENTER} />
+                <ToastContainer enableMultiContainer containerId={'finalizeSuccess'} type = {toast.TYPE.SUCCESS} position={toast.POSITION.TOP_CENTER} />
                 <Navbar reservedFoods = {this.state.foodCountInOrder} showCart = {this.showCart}/>
                 <CartModal currentOrder = {this.state.orderInCart} show = {this.state.showCartModal} hideModal = {this.hideCart} finalize = {this.finalizeOrder} increaseButton = {this.increaseFood} decreaseButton = {this.decreaseFood}/>    
                 <Header name = {localStorage.getItem('firstName') + ' ' + localStorage.getItem('lastName')} phoneNumber = {"091287955201"} email = {localStorage.getItem('email')} credit={this.state.userCredit} />

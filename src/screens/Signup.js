@@ -60,7 +60,7 @@ class Signup extends Component {
             axios.get('http://ie.etuts.ir:32100/checkAuth', config)
             .then((response) => {
                 this.fetchProfile();
-                window.location.href = '/home';
+                window.location.hash = '/home';
             })
             .catch((error) => {
                 console.log(error)

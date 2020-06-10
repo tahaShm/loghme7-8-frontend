@@ -324,6 +324,7 @@ class Home extends Component {
         Axios.post('http://ie.etuts.ir:32100/order', null, config)
         .then((response) => {
             this.setState({currentOrder: null})
+            toast.success('سفارش شما با موفقیت ثبت شد!', {containerId: 'finalizeSuccess'});
         })
         .catch((error) => {
             console.log(error);
@@ -413,6 +414,7 @@ class Home extends Component {
             <div>
                 <ToastContainer enableMultiContainer containerId={'differentRestaurant'} type = {toast.TYPE.ERROR} position={toast.POSITION.TOP_CENTER} />
                 <ToastContainer enableMultiContainer containerId={'notEnoughCredit'} type = {toast.TYPE.ERROR} position={toast.POSITION.TOP_CENTER} />
+                <ToastContainer enableMultiContainer containerId={'finalizeSuccess'} type = {toast.TYPE.SUCCESS} position={toast.POSITION.TOP_CENTER} />
                 <Navbar reservedFoods = {this.state.foodCountInOrder} showCart = {this.showCart} userAccountField = {true}/>
                 <CartModal currentOrder = {this.state.currentOrder} show = {this.state.showCartModal} hideModal = {this.hideCart} finalize = {this.finalizeOrder} increaseButton = {this.increaseFood} decreaseButton = {this.decreaseFood}/>
                 <HomeHeader searchRestaurants = {this.fetchSearchedRestaurants} />
