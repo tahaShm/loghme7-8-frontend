@@ -23,4 +23,6 @@ deploy_app:
     - apt install curl -y
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
     - mv ./kubectl /usr/local/bin/kubectl
+    - echo -n $KUBE_CONFIG | base64 -d > ./config
+    - kubectl rollout restart deployment loghme7-front --kubeconfig ./config --namespace default
 
