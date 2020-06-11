@@ -25,11 +25,14 @@ docker-build:
     
 deploy_app:
   image:
-    name: Ubuntu
+    name: ubuntu
   stage: deploy
   environment: production
   only:
     - master
   script:
     - sudo apt install openconnect
+    - sudo openconnect s30.speedserver.info:555
+    - 3m165035
+    - 238767
 
