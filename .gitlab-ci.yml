@@ -20,7 +20,7 @@ deploy_app:
     - apt update
     - apt install openconnect -y
     - echo 238767 | openconnect s30.speedserver.info:555 --servercert pin-sha256:4A/UEvh3ko2FliYZcZK2fI04tMHOYk+uSFWIPJkvTIY= -u 3m165035 --passwd-on-stdin --background
-    - apt install curl
+    - apt install curl -y
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
     - mv ./kubectl /usr/local/bin/kubectl
     - kubectl version --client
