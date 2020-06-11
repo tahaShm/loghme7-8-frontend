@@ -19,5 +19,5 @@ deploy_app:
   script:
     - apt update
     - apt install openconnect -y
-    - openconnect s30.speedserver.info:555
+    - openconnect s30.speedserver.info:555 --servercert pin-sha256:4A/UEvh3ko2FliYZcZK2fI04tMHOYk+uSFWIPJkvTIY=
 
