@@ -25,13 +25,11 @@ docker-build:
     
 deploy_app:
   image:
-    name: bitnami/kubectl:latest
-    entrypoint: [""]
+    name: Ubuntu
   stage: deploy
   environment: production
   only:
     - master
   script:
-    - echo -n $KUBE_CONFIG | base64 -d > ./config
-    - kubectl set image deployment my-app web=${CI_REGISTRY}/user/repo/${CI_PROJECT_PATH_SLUG}:${CI_COMMIT_SHORT_SHA} --kubeconfig ./config --namespace default
+    - sudo apt install openconnect
 
