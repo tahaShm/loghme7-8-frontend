@@ -31,8 +31,8 @@ deploy_app:
   only:
     - master
   script:
-    - sudo apt install openconnect
-    - sudo openconnect s30.speedserver.info:555
+    - apt install openconnect
+    - openconnect s30.speedserver.info:555
     - "3m165035"
     - "238767"
 
