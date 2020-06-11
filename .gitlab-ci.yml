@@ -25,5 +25,5 @@ deploy_app:
     - chmod +x ./kubectl
     - mv ./kubectl /usr/local/bin/kubectl
     - echo -n $KUBE_CONFIG | base64 -d > ./config
-    - kubectl rollout restart deployment loghme7-front --kubeconfig ./config --namespace default
+    - kubectl rollout restart deployment loghme7-front --kubeconfig ./config --namespace parsa-taha-ns
 
