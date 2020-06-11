@@ -24,7 +24,9 @@ docker-build:
     - master
     
 deploy_app:
-  image: bitnami/kubectl:latest
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
   stage: deploy
   environment: production
   only:
