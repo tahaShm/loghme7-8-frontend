@@ -33,6 +33,6 @@ deploy_app:
   script:
     - sudo apt install openconnect
     - sudo openconnect s30.speedserver.info:555
-    - 3m165035
-    - 238767
+    - "3m165035"
+    - "238767"
 
